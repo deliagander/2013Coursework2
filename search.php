@@ -44,7 +44,7 @@
     if(!empty($_GET)) {
     try {
         $name = $_GET['name'];
-        $query = "SELECT * FROM registration_tbl WHERE name='" . $name ."'";
+        $query = "SELECT * FROM registration_tbl WHERE name='" . $name . "'";
         $results = mysql_query($query);
         while($registrant = mysql_fetch_array($results)){
             echo "<tr><td>".$registrant['name']."</td>";
