@@ -44,15 +44,7 @@
     if(!empty($_GET)) {
     try {
         $name = $_GET['name'];
-        $query = "SELECT * FROM registration_tbl WHERE name='" . $name . "'";
-        $results = mysql_query($query);
-        while($registrant = mysql_fetch_array($results)){
-            echo "<tr><td>".$registrant['name']."</td>";
-            echo "<td>".$registrant['email']."</td>";
-            echo "<td>".$registrant['company']."</td>";
-            echo "<td>".$registrant['date']."</td></tr>";
 
-        }
         // $email = $_GET['email'];
         // $company = $_GET['company'];
         // Insert data
@@ -71,16 +63,26 @@
     //echo "<h3>Your're registered!</h3>";
     }
     // // Retrieve data
+        $query = "SELECT * FROM registration_tbl WHERE name='" . $name . "'";
+        $results = mysql_query($query);
+        echo "<h2>Your search results:</h2>";
+        echo "<table>";
+        echo "<tr><th>Name</th>";
+        echo "<th>Email</th>";
+        echo "<th>Company</th>";
+        echo "<th>Date</th></tr>";
+        while($registrant = mysql_fetch_array($results)){
+            echo "<tr><td>".$registrant['name']."</td>";
+            echo "<td>".$registrant['email']."</td>";
+            echo "<td>".$registrant['company']."</td>";
+            echo "<td>".$registrant['date']."</td></tr>";
+
+        }
     // $sql_select = "SELECT * FROM registration_tbl";
     // $stmt = $conn->query($sql_select);
     // $registrants = $stmt->fetchAll(); 
     // if(count($registrants) > 0) {
-    //     echo "<h2>People who are registered:</h2>";
-    //     echo "<table>";
-    //     echo "<tr><th>Name</th>";
-    //     echo "<th>Email</th>";
-    //     echo "<th>Company</th>";
-    //     echo "<th>Date</th></tr>";
+
     //     foreach($registrants as $registrant) {
     //         echo "<tr><td>".$registrant['name']."</td>";
     //         echo "<td>".$registrant['email']."</td>";
