@@ -72,11 +72,7 @@ else {
     die(mysql_error());
 }
     //echo "<h3>Your're registered!</h3>";
-    }
     // // Retrieve data
-
-
-        }
     // $sql_select = "SELECT * FROM registration_tbl";
     // $stmt = $conn->query($sql_select);
     // $registrants = $stmt->fetchAll(); 
