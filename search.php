@@ -41,28 +41,8 @@
         die(var_dump($e));
     }
     // Insert registration info
-    if(!empty($_GET)) {
-    try {
+    if($_GET) {
         $name = $_GET['name'];
-
-        // $email = $_GET['email'];
-        // $company = $_GET['company'];
-        // Insert data
-        // $sql_insert = "INSERT INTO registration_tbl (name, email, company, date) 
-        //            VALUES (?,?,?,?)";
-        // $stmt = $conn->prepare($sql_insert);
-        // $stmt->bindValue(1, $name);
-        // $stmt->bindValue(2, $email);
-        // $stmt->bindValue(3, $company);
-        // $stmt->bindValue(4, $date);
-        // $stmt->execute();
-    }
-    catch(Exception $e) {
-        die(var_dump($e));
-    }
-    //echo "<h3>Your're registered!</h3>";
-    }
-    // // Retrieve data
         $query = "SELECT * FROM registration_tbl WHERE name='" . $name . "'";
         $results = mysql_query($query);
         echo "<h2>Your search results:</h2>";
@@ -76,6 +56,25 @@
             echo "<td>".$registrant['email']."</td>";
             echo "<td>".$registrant['company']."</td>";
             echo "<td>".$registrant['date']."</td></tr>";
+        // $email = $_GET['email'];
+        // $company = $_GET['company'];
+        // Insert data
+        // $sql_insert = "INSERT INTO registration_tbl (name, email, company, date) 
+        //            VALUES (?,?,?,?)";
+        // $stmt = $conn->prepare($sql_insert);
+        // $stmt->bindValue(1, $name);
+        // $stmt->bindValue(2, $email);
+        // $stmt->bindValue(3, $company);
+        // $stmt->bindValue(4, $date);
+        // $stmt->execute();
+    }
+else {
+    die(mysql_error());
+}
+    //echo "<h3>Your're registered!</h3>";
+    }
+    // // Retrieve data
+
 
         }
     // $sql_select = "SELECT * FROM registration_tbl";
