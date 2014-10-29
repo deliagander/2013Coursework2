@@ -17,7 +17,7 @@
 </head>
 <body>
 <h1>Register here!</h1>
-<p>Search for a name, email address or company, then click <strong>Submit</strong> to register.</p>
+<p>Search for a name then click <strong>Submit</strong> to search.</p>
 <form method="get" action="search.php" enctype="multipart/form-data" >
       Name  <input type="text" name="name" id="name"/></br>
 <!--       Email <input type="text" name="email" id="email"/></br>
