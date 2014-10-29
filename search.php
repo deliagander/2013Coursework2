@@ -41,53 +41,49 @@
         die(var_dump($e));
     }
     // Insert registration info
-    if($_GET) {
+    if(!empty($_GET)) {
+    try {
         $name = $_GET['name'];
-        $query = "SELECT * FROM registration_tbl WHERE name LIKE '%name%'";
-        $results = mysql_query($query);
-        echo "<h2>Your search results:</h2>";
-        echo "<table>";
-        echo "<tr><th>Name</th>";
-        echo "<th>Email</th>";
-        echo "<th>Company</th>";
-        echo "<th>Date</th></tr>";
-        while($registrant = mysql_fetch_array($results)){
-            echo "<tr><td>".$registrant['name']."</td>";
-            echo "<td>".$registrant['email']."</td>";
-            echo "<td>".$registrant['company']."</td>";
-            echo "<td>".$registrant['date']."</td></tr>";
-        // $email = $_GET['email'];
-        // $company = $_GET['company'];
-        // Insert data
-        // $sql_insert = "INSERT INTO registration_tbl (name, email, company, date) 
-        //            VALUES (?,?,?,?)";
-        // $stmt = $conn->prepare($sql_insert);
-        // $stmt->bindValue(1, $name);
-        // $stmt->bindValue(2, $email);
-        // $stmt->bindValue(3, $company);
-        // $stmt->bindValue(4, $date);
-        // $stmt->execute();
+        $email = $_GET['email'];
+        $company = $_GET['company'];
+        $date = $_GET['date'];
+        $searched = True;    
     }
-else {
-    die(mysql_error());
-}
-    //echo "<h3>Your're registered!</h3>";
-    // // Retrieve data
-    // $sql_select = "SELECT * FROM registration_tbl";
-    // $stmt = $conn->query($sql_select);
-    // $registrants = $stmt->fetchAll(); 
-    // if(count($registrants) > 0) {
-
-    //     foreach($registrants as $registrant) {
-    //         echo "<tr><td>".$registrant['name']."</td>";
-    //         echo "<td>".$registrant['email']."</td>";
-    //         echo "<td>".$registrant['company']."</td>";
-    //         echo "<td>".$registrant['date']."</td></tr>";
-    //     }
-    //     echo "</table>";
-    // } else {
-    //     echo "<h3>No one is currently registered.</h3>";
-    // }
+    catch(Exception $e) {
+        die(var_dump($e));
+    }
+    echo "<h3>Database searched!</h3>";
+    }
+    if ($searched == TRUE) {
+        // Retrieve data
+        $sql_select = " SELECT * FROM registration_tbl 
+                        WHERE name LIKE '%$name%'
+                        AND email LIKE '%$email%'
+                        AND company LIKE '%$company%'
+                        AND date LIKE '%$date%'         ";
+        $stmt = $conn->query($sql_select);
+        $registrants = $stmt->fetchAll(); 
+        if(count($registrants) > 0) {
+            echo "<h2>Search results:</h2>";
+            echo "<table>";
+            echo "<tr><th>Name</th>";
+            echo "<th>Email</th>";
+            echo "<th>Company</th>";
+            echo "<th>Date</th></tr>";
+            foreach($registrants as $registrant) {
+                echo "<tr><td>".$registrant['name']."</td>";
+                echo "<td>".$registrant['email']."</td>";
+                echo "<td>".$registrant['company']."</td>";
+                echo "<td>".$registrant['date']."</td></tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "<h3>No results found.</h3>";
+        }
+    }
+    else {
+        echo "Waiting for query...";
+    }
 ?>
 </body>
 </html>
