@@ -18,7 +18,7 @@
 <body>
 <h1>Register here!</h1>
 <p>Search for a name, email address or company, then click <strong>Submit</strong> to register.</p>
-<form method="get" action="index.php" enctype="multipart/form-data" >
+<form method="get" action="search.php" enctype="multipart/form-data" >
       Name  <input type="text" name="name" id="name"/></br>
 <!--       Email <input type="text" name="email" id="email"/></br>
       Company <input type="text" name="company" id="company"/></br> -->
@@ -43,7 +43,7 @@
     // Insert registration info
     if($_GET) {
         $name = $_GET['name'];
-        $query = "SELECT * FROM registration_tbl WHERE name='" . $name . "'";
+        $query = "SELECT * FROM registration_tbl WHERE name LIKE '%name%'";
         $results = mysql_query($query);
         echo "<h2>Your search results:</h2>";
         echo "<table>";
