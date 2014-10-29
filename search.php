@@ -44,9 +44,9 @@
     if(!empty($_GET)) {
     try {
         $name = $_GET['name'];
-        $email = $_GET['email'];
-        $company = $_GET['company'];
-        $date = $_GET['date'];
+        // $email = $_GET['email'];
+        // $company = $_GET['company'];
+        // $date = $_GET['date'];
         $searched = True;    
     }
     catch(Exception $e) {
@@ -58,9 +58,9 @@
         // Retrieve data
         $sql_select = " SELECT * FROM registration_tbl 
                         WHERE name LIKE '%$name%'
-                        AND email LIKE '%$email%'
-                        AND company LIKE '%$company%'
-                        AND date LIKE '%$date%'         ";
+                        -- AND email LIKE '%$email%'
+                        -- AND company LIKE '%$company%'
+                        -- AND date LIKE '%$date%'         ";
         $stmt = $conn->query($sql_select);
         $registrants = $stmt->fetchAll(); 
         if(count($registrants) > 0) {
