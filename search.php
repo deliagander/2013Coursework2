@@ -44,23 +44,16 @@
     if(!empty($_GET)) {
     try {
         $name = $_GET['name'];
-        // $email = $_GET['email'];
-        // $company = $_GET['company'];
-        // $date = $_GET['date'];
         $searched = True;    
     }
     catch(Exception $e) {
         die(var_dump($e));
     }
-    echo "<h3>Database searched!</h3>";
     }
     if ($searched == TRUE) {
         // Retrieve data
         $sql_select = " SELECT * FROM registration_tbl 
-                        WHERE name LIKE '%$name%'
-                        -- AND email LIKE '%$email%'
-                        -- AND company LIKE '%$company%'
-                        -- AND date LIKE '%$date%'         ";
+                        WHERE name LIKE '%$name%'";
         $stmt = $conn->query($sql_select);
         $registrants = $stmt->fetchAll(); 
         if(count($registrants) > 0) {
@@ -82,7 +75,7 @@
         }
     }
     else {
-        echo "Waiting for query...";
+        echo "Nothing Searched!!";
     }
 ?>
 </body>
